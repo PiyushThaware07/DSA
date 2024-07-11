@@ -37,43 +37,32 @@ Example 2 :
 
 class Solution:
     def optimized(self,string1,string2):
-        # check string have equal length's
-        if len(string1) != len(string2):
-            print("not isomorphic")
+        n1 = len(string1)
+        n2 = len(string2)
         
-        hashMapST = {}
-        hashMapTS = {}
-        for i in range(0,len(string1)):
+        if n1 != n2:
+            print("Lengths are different")
+
+        hashMap1 = {}
+        hashMap2 = {}
+        for i in range(0,n1):
             c1 = string1[i]
             c2 = string2[i]
-            if (c1 in hashMapST and hashMapST[c1] != c2) or (c2 in hashMapTS and hashMapTS[c2] != c1):
-                print(False)
-            hashMapST[c1] = c2
-            hashMapTS[c2] = c1
-        print(True)
+            if c1 in hashMap1 and hashMap1[c1] != c2:
+                print("I am not isomorphic")
+                return
+            elif c2 in hashMap2 and hashMap2[c2] != c1:
+                print("I am not isomorphic")
+                return
+            else:
+                hashMap1[c1] = c2
+                hashMap1[c2] = c1
+        print("I am isomorphic")
+        return
 
 
 
-
-            hashMapST[c1] = c2
-            hashMapTS[c2] = c1
-
-        
-                
-
-
-
-
-
-
-            
-
-
-
-
-
-
-s = "eggp"
-t = "addd"
+s = "badc"
+t = "baba"
 sol = Solution()
 sol.optimized(s,t)
