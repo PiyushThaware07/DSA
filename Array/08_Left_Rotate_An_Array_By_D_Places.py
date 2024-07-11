@@ -2,7 +2,7 @@
 
 class Solution:
     def better(self,arr,n,d):
-        d = d % n           # suppose d=8  => 8/5 => 3 (Roatation)
+        d = d % n           # suppose d=8  => 8%5 => 3 (Rotation)
         temp = arr[0:d]   # store element at the starting till d places
         for i in range(d,n):
             arr[i-d] = arr[i]
