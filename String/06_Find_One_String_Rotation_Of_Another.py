@@ -65,7 +65,7 @@ class Solution:
 
 
 str1 = "abcde"
-str2 = "abced"
+str2 = "bcdea"
 s = Solution()
-# s.brute(str1, str2)
+s.brute(str1, str2)
 s.optimized(str1, str2)
