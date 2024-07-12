@@ -10,9 +10,34 @@ An input string is valid if:
 
 class Solution:
     def isValid(self,string):
-        print(string)
+        stack = []
+        for i in range(0,len(string)):
+            char = string[i]
+            if char == "(" or char == "[" or char == "{":
+                stack.append(char)
+            else:
+                if len(stack) == 0:
+                    print("Stack Empty")
+                    return
+                else:
+                    openingAtTop = stack[-1]
+                    closing = string[i]
+                    if (( openingAtTop == "(" and closing==")")
+                     or
+                     ( openingAtTop == "[" and closing=="]")
+                     or
+                     ( openingAtTop == "{" and closing=="}")):
+                        stack.pop()
+                    
+        if len(stack) != 0:
+            print("Invalid Parentheses")
+        else:
+            print("Valid Parentheses")
 
 
-string = "()"
+
+
+
+string = "([{]])"
 s = Solution()
 s.isValid(string)
