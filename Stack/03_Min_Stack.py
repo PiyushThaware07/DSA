@@ -32,6 +32,7 @@ class Solution(object):
         print("Minimum",minimum )
 
         
+        
 
 s = Solution()
 s.push(-2)
