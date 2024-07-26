@@ -20,5 +20,6 @@
         "terminal.ansiRed": "#007700",
         "terminal.ansiWhite": "#00BB00",
         "terminal.ansiYellow": "#007700"
-    }
+    },
+    "python.analysis.autoImportCompletions": true
 }
