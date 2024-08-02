@@ -26,7 +26,7 @@ Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 '''
 class Solution:
-    def brute(self,string):
+    def optimal(self,string):
         symbols = {
             "I" : 1,
             "V" : 5,
@@ -55,4 +55,4 @@ class Solution:
 string = "MCMXCIV"
 # string = "III"
 s = Solution()
-s.brute(string)
+s.optimal(string)

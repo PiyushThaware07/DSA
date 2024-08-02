@@ -15,7 +15,7 @@ Digit 3 is inside of 3 nested parentheses in the string.
 '''
 
 class Solution:
-    def brute(self,string):
+    def optimal(self,string):
         current_counter = 0
         maximum_counter = 0
         for char in string:
@@ -32,4 +32,4 @@ class Solution:
 # string = "(1+(2*3)+((8)/4))+1"
 string = "(1)+((2))+(((3)))"
 s = Solution()
-s.brute(string)
+s.optimal(string)
