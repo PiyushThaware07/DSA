@@ -7,7 +7,29 @@ from custom.linkedlist import CreateNode, LinkedList
 
 class Solution:
     def oddEvenList(self,myList):
-        pass 
+        head = myList.head
+        odd_dummy = CreateNode(-1)
+        even_dummy = CreateNode(-1)
+        odd = odd_dummy
+        even = even_dummy
+        index = 0
+
+        while head is not None:
+            if index % 2 == 0:
+                even.next = CreateNode(head.data)
+                even = even.next
+            else:
+                odd.next = CreateNode(head.data)
+                odd = odd.next
+            index = index + 1
+            head = head.next
+        even.next = odd_dummy.next
+        myList.head = even_dummy.next
+        myList.traversal()
+        
+
+
+
 
 
 ll1 = LinkedList()
