@@ -1,14 +1,25 @@
 class Solution:
-    def brute(self,string):
-        n = string
-        hashMap = {}
-        for char in string:
-            if char not in hashMap:
-                hashMap[char] = 1
-        print(hashMap)
-        print(hashMap.__len__())
+    def longestSubStringWithoutRepeatingCharacters(self, string):
+        n = len(string)
+        longest = 0
+        for i in range(0,n):
+            subString = ""
+            seen_chars = set()  # To track characters seen in the current substring
+            for j in range(i,n):
+                if string[j] in seen_chars:
+                    break
+                subString = subString + string[j]
+                seen_chars.add(string[j])
+                if len(subString) > longest:
+                    longest = len(subString)
+        print(longest)
+        
 
-string = "pwwkew"
+
+# Example usage
+string = "cadbzabcd"
+string = "bbbbbb"
 s = Solution()
-s.brute(string)
+s.longestSubStringWithoutRepeatingCharacters(string)
+
 
