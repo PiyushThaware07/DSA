@@ -26,7 +26,8 @@ class Solution(object):
             sumOfdata = dataOfL1 + dataOfL2 + carry
             
             # Create a new node with the digit dataue of the sum
-            new_node = CreateNode(sumOfdata % 10)  # Get the last digit
+            remainder = sumOfdata % 10
+            new_node = CreateNode(remainder)  # Get the last digit
             carry = sumOfdata // 10  # Update carry
             
             current.next = new_node  # Link the new node
@@ -38,7 +39,7 @@ class Solution(object):
             if l2 is not None:
                 l2 = l2.next  # Move to the next node in l2
         
-        print(dummy.next)  # Return the next of dummy node which points to the head of the new linked list
+        print(dummy.next.data)  # Return the next of dummy node which points to the head of the new linked list
 
             
 

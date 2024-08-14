@@ -32,7 +32,7 @@ class Solution:
 
 
 nums1 = [1,2,2,3,3,4,5,6,8]
-nums2 = [2,3,3,5,5,6,6,7,8]
+nums2 = [2,3,7,8]
 s = Solution()
 s.brute(nums1,nums2)
 s.optimal(nums1,nums2)

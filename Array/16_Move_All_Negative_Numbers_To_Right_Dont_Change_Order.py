@@ -28,4 +28,4 @@ for i in range(0,len(input)):
             swap(input,i,j)
             print(input)
             break
-# print(input)
+print(input)

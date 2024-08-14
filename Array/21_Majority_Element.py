@@ -11,9 +11,6 @@ Input: nums = [2,2,1,1,1,2,2]
 Output: 2
 '''
 
-from xml.dom.minidom import Element
-
-
 class Solution:
     def brute(self,arr):
         for i in range(len(arr)):

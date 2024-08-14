@@ -64,7 +64,7 @@ class Solution:
             
 
 
-nums = [54,2,34,1,67,55,67,67,4]
+nums = [54,2,34,1,67,55,55,67,67,4]
 s = Solution()
 s.brute(nums)
 s.better(nums)
