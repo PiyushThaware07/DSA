@@ -15,21 +15,19 @@ class Solution:
         b = 1
 
         if number == 0:
-            print(a)
-            return
+            return a
         
         if number == 1:
-            print(b)
-            return
+            return b
 
         else:  
             print(a)
             print(b)
-            for i in range(2,number):
+            for i in range(2,number+1):
                 sum = a + b
                 a = b
                 b = sum
-                print(b)
+            return b
 
 
     def optimize(self,number):
@@ -43,5 +41,5 @@ class Solution:
 
 
 s = Solution()
-s.brute(3)
+print("brute --> ",s.brute(3))
 print("optimize --> ",s.optimize(3))
