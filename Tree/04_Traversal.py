@@ -89,9 +89,9 @@ class BST:
 
 
 root = BST(None)
-nums = [10,5,3,20,43,37,58,100]
-for num in nums:
-    root.insert(num)
+nodes = [100,200,150,250,300,350,400,450,500]
+for node in nodes:
+    root.insert(node)
 # root.preOrder()
-# root.inOrder()
-root.postOrder()
+root.inOrder()
+# root.postOrder()

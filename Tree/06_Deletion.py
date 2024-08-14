@@ -30,69 +30,62 @@ class BST:
         traversal(self)
         print("Preorder --> ",result)
 
-    # ! search
-    def search(self,target):
-        if self.key is None:
-            print("~> BST is empty")
-            return 
-        
-        if target == self.key:
-            print("Node found")
-            return
-        
-        if target <= self.key:
-            if self.left is not None:
-                self.left.search(target)
-            else:
-                print("~> Node not found")
-        else:
-            if self.right is not None:
-                self.right.search(target)
-            else:
-                print("~> Node not found")
 
     # ! deletion
-    def delete(self,target):
-        # if bst is empty
+    def delete(self, target):
+        # Tree is empty
         if self.key is None:
             print("~> BST is empty")
-            return
+            return self
         
-        # target can be present in left either right sub-tree
+        # Search in the left subtree
         if target < self.key:
             if self.left is not None:
                 self.left = self.left.delete(target)
-                print(self.left)
             else:
                 print("~> Node not found")
+        
+        # Search in the right subtree
         elif target > self.key:
             if self.right is not None:
                 self.right = self.right.delete(target)
-                print(self.right)
             else:
-                print("~> Node not found") 
+                print("~> Node not found")
+        
+        # Node to be deleted found (target == self.key)
         else:
-            # 0 child or 1 child node deletion
+            # Node with only one child or no child
             if self.left is None:
                 temp = self.right
                 self = None
                 return temp
+            
             if self.right is None:
                 temp = self.left
                 self = None
                 return temp
             
-            # 2 child node deletion
-            node = self.right  # find smallest node into the right sub-tree
-            while node.left:
-                node = node.left
-            self.key = node.key
-            self.right = self.right.delete(node.key)
-        return self 
+            # Node with two children: get the inorder successor (smallest in the right subtree)
+            temp = self.right
+            while temp.left is not None:
+                temp = temp.left
+            
+            # Copy the inorder successor's content to this node
+            self.key = temp.key
+            
+            # Delete the inorder successor
+            self.right = self.right.delete(temp.key)
+        
+        print(self)
+
+
+
+
+            
+
 
 
         
-
 
 
 
@@ -103,5 +96,5 @@ nums = [1,4,2,0,45,32,56,7,54,3]
 for num in nums:
     root.insert(num)
 root.preorder()
-root.delete(155)
+root.delete(2)
 root.preorder()
