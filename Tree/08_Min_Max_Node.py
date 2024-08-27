@@ -1,3 +1,6 @@
+from numpy import delete
+
+
 class BST:
     def __init__(self, key):
         self.key = key
@@ -40,59 +43,39 @@ class BST:
                 postorder(node.left)
                 postorder(node.right)
                 print(node.key, end=' ')
-        
-        print("Inorder Traversal:")
-        inorder(self)
         print("\nPreorder Traversal:")
         preorder(self)
-        print("\nPostorder Traversal:")
-        postorder(self)
-        print()
-    
-    def delete(self, data):
-        if self.key is None:
-            print("~> BST is empty")
-            return self
-        
-        if data < self.key:
-            if self.left is not None:
-                self.left = self.left.delete(data)
-            else:
-                print("~> Given Node is not present in tree.")
-        elif data > self.key:
-            if self.right is not None:
-                self.right = self.right.delete(data)
-            else:
-                print("~> Given node is not present in tree")
+
+    def get_min_node(self):
+        if self.left is None:
+            print(self.key)
+            return
         else:
-            # CASE ~> Node with only one child or no child
-            if self.left is None:
-                return self.right
-            elif self.right is None:
-                return self.left
-            
-            # CASE ~> Node with two children: Get the inorder successor
-            successor = self.right
-            while successor.left:
-                successor = successor.left
-            
-            self.key = successor.key
-            self.right = self.right.delete(successor.key)
-        
-        return self
+            current = self
+            while current.left is not None:
+                current = current.left
+            print(current.key)
+            return
+    
+    def get_max_node(self):
+        if self.right is None:
+            print(self.key)
+            return
+        else:
+            current = self
+            while current.right is not None:
+                current = current.right
+            print(current.key)
+            return
+
 
 # Example Usage
 root = BST(None)
-nums = [10, 5, 20, 15, 18, 30, 25, 22, 24]
+nums = [10, 5, 20, 15, 18, 300, 25, 22, 24]
+# nums = [1,2,3,4,5,6]
 for num in nums:
     root.insert(num)
-
-print("Before deletion:")
 root.traversal()
-
-root.delete(20)
-root.delete(25)
-root.delete(5)
-
-print("\nAfter deletion:")
-root.traversal()
+print("\n")
+root.get_min_node()
+root.get_max_node()

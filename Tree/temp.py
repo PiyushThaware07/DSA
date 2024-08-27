@@ -1,3 +1,6 @@
+from numpy import delete
+
+
 class BST:
     def __init__(self, key):
         self.key = key
@@ -49,50 +52,50 @@ class BST:
         postorder(self)
         print()
     
-    def delete(self, data):
+    def delete(self, target):
         if self.key is None:
             print("~> BST is empty")
-            return self
+            return
         
-        if data < self.key:
+        if target < self.key:
             if self.left is not None:
-                self.left = self.left.delete(data)
+                self.left = self.left.delete(target)
             else:
-                print("~> Given Node is not present in tree.")
-        elif data > self.key:
+                print("~> Given target node is not found in BST.")
+                return
+        elif target > self.key:
             if self.right is not None:
-                self.right = self.right.delete(data)
+                self.right = self.right.delete(target)
             else:
-                print("~> Given node is not present in tree")
+                print("~> Given target node is not present in BST.")
+                return
         else:
-            # CASE ~> Node with only one child or no child
             if self.left is None:
-                return self.right
-            elif self.right is None:
-                return self.left
-            
-            # CASE ~> Node with two children: Get the inorder successor
-            successor = self.right
-            while successor.left:
-                successor = successor.left
-            
-            self.key = successor.key
-            self.right = self.right.delete(successor.key)
-        
+                temp = self.right
+                self = None
+                return temp
+            if self.right is None:
+                temp = self.right
+                self = None
+                return temp
+            else:
+                node = self.right
+                while node.left is not None:
+                    node = node.left
+                self.key = node.key
+                self.right = self.right.delete(node.key)
         return self
+
 
 # Example Usage
 root = BST(None)
 nums = [10, 5, 20, 15, 18, 30, 25, 22, 24]
 for num in nums:
     root.insert(num)
-
-print("Before deletion:")
+print("\n Before Deletion")
 root.traversal()
 
+print("\n After Deletion")
 root.delete(20)
-root.delete(25)
 root.delete(5)
-
-print("\nAfter deletion:")
 root.traversal()
