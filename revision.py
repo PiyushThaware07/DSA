@@ -1,104 +1,109 @@
 class BST:
     def __init__(self,key):
         self.key = key
-        self.leftNode = None
-        self.rightNode = None
+        self.left = None
+        self.right = None
     
-    def insert(self,data):
-        # insertion at root node
+    def insert_node(self, data):
+        # If BST is empty, insert the first node
         if self.key is None:
             self.key = data
             return
         
-        # insertion at the left sub-tree
-        if self.key >= data:
-            # left child already exists
-            if self.leftNode is not None:
-                self.leftNode.insert(data)
+        # Insert data in the correct position
+        if data < self.key:
+            if self.left is not None:
+                self.left.insert_node(data)
             else:
-                self.leftNode = BST(data)
-        else:
-            # right child already exists
-            if self.rightNode is not None:
-                self.rightNode.insert(data)
+                self.left = BST(data)
+        elif data > self.key:
+            if self.right is not None:
+                self.right.insert_node(data)
             else:
-                self.rightNode = BST(data)
-    
-    def inorder(self):  # LEFT | ROOT | RIGHT
-        if self is None or self.key is None:
-            print("~> BST is empty")
-            return
-        
-        if self.leftNode is not None:
-            self.leftNode.inorder()
-        
-        print(self.key)
+                self.right = BST(data)
 
-        if self.rightNode is not None:
-            self.rightNode.inorder()
-
-    def preorder(self):  # ROOT | LEFT | RIGHT
-        if self is None or self.key is None:
-            print("~> BST is empty")
-            return
-        
-        print(self.key)
-
-        if self.leftNode is not None:
-            self.leftNode.preorder()
-        
-        if self.rightNode is not None:
-            self.rightNode.preorder()
-        
-
-    
-    def postorder(self): # LEFT | RIGHT | ROOT
-        if self is None or self.key is None:
-            print("~> BST is empty")
-            return
-        
-        if self.leftNode is not None:
-            self.leftNode.postorder()
-        
-        if self.rightNode is not None:
-            self.rightNode.postorder()
-        
-        print(self.key)
-
-    def search(self,target):
+    def pre_order(self):  # root | left | right
         if self.key is None:
             print("~> BST is empty")
             return
         
-        if self.key == target:
-            print(f"Found")
+        print(self.key,end=" ")
+        if self.left is not None:
+            self.left.pre_order()
+        
+        if self.right is not None:
+            self.right.pre_order()
+
+    def post_order(self):  # left | right | root
+        if self.key is None:
+            print("~> BST is empty")
             return
         
-        if target <= self.key:
-            if self.leftNode is not None:
-                self.leftNode.search(target)
+        if self.left is not None:
+            self.left.post_order()
+        
+        if self.right is not None:
+            self.right.post_order()
+
+        print(self.key,end=" ")
+    
+    
+    def in_order(self):  # root | left | right
+        print(self.key,end=" ")
+
+        if self.left is not None:
+            self.left.in_order()
+        
+        if self.right is not None:
+            self.right.in_order()
+        
+    def search(self,target):
+        if target == self.key:
+            print("~> target found")
+            return
+        
+        if target < self.key:
+            if self.left is not None:
+                self.left.search(target)
             else:
-                print("~> Node not found")
+                print("~> target not found")
                 return
         else:
-            if self.rightNode is not None:
-                self.rightNode.search(target)
+            if self.right is not None:
+                self.right.search(target)
             else:
-                print("~> Node not found")
+                print("~> target not found")
                 return
 
 
+    def level_order_traversal(self):
+        if self.key is None:
+            print("~> BST is empty")
+            return
+        
+        queue = [self]  # Start with the root node (self)
+        while len(queue) != 0:
+            root = queue.pop(0)  # Pop the first node from the queue
+            print(root.key, end=" ")  # Print the key of the current node
+
+            # Add the left child if it exists
+            if root.left is not None:
+                queue.append(root.left)
+            
+            # Add the right child if it exists
+            if root.right is not None:
+                queue.append(root.right)
 
 
 
 
+root = BST(None)
+nums = [10,5,7,15,12,17,20]
+for num in nums:
+    root.insert_node(num)
+# root.pre_order()
+# root.post_order()
+# root.in_order()
 
-
-root = BST(100)
-nodes = [200,150,250,300,350,400,450,500]
-for node in nodes:
-    root.insert(node)
-# root.inorder()
-# root.postorder()
-# root.preorder()
-root.search(250)
+# root.search(2)
+root.level_order_traversal()

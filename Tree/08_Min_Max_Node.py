@@ -1,6 +1,3 @@
-from numpy import delete
-
-
 class BST:
     def __init__(self, key):
         self.key = key
