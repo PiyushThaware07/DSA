@@ -35,16 +35,29 @@ class BST:
         
         print(result)
         return
+    
+    '''
+    def verticalTraversal(self):
+            values = {}
+            result = []
+            self.verticalOrder(self,0,0,values)
+            sorted_values = sorted(values)
+            for value in sorted_values:
+                values[value].sort()
+                node = values[value]
+                for n in node:
+                    result.append(n[1])
+            print(result)
+    '''
 
 
 
 # Create the tree
 root = BST(1)
 root.lchild = BST(2)
-root.rchild = BST(3)
-root.lchild.lchild = BST(6)
-root.lchild.rchild = BST(7)
-root.rchild.lchild = BST(4)
-root.rchild.rchild = BST(5)
+root.lchild.lchild = BST(3)
+root.lchild.rchild = BST(4)
+root.rchild = BST(5)
+root.rchild.lchild = BST(6)
 
 root.verticalTraversal()
