@@ -35,9 +35,7 @@ class Graph:
             visited.add(vertice)
             for neighbor in self.graph[vertice]:
                 self.DFS(neighbor, visited)
-
-
-        
+                
 
 
 g = Graph()
