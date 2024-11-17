@@ -1,3 +1,6 @@
+
+# * Using Adjancency List
+
 class Graph:
     def __init__(self):
         self.vertices = []
@@ -6,7 +9,7 @@ class Graph:
     
     def add_vertice(self,value):
         """Add a new vertex to the graph."""
-        if value is self.add_vertice:
+        if value in self.add_vertice:
             print(f"{value} node is already present in node list")
             return
         else:
