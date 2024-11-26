@@ -25,6 +25,7 @@ class Solution:
                 sumbmission = sumbmission + arr[j]
                 if sumbmission == k:
                     longest = max(longest,j-i+1)
+                    break
         print(longest)
 
     

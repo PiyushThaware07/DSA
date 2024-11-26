@@ -3,6 +3,7 @@ Longest Consecutive Sequence --> Given an unsorted array of integers nums, retur
     Example 1:
         Input: nums = [100,4,200,1,3,2]
         Output: 4
+        randomly pickedup 1 then 1+1 => 2 present then 2+1 => 3 present and so on.
         Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
 
     Example 2:

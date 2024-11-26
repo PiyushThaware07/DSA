@@ -1,3 +1,7 @@
+'''
+PROBLEM STATEMENT -> Given an array of integers, find all unique triplets (a,b,c) in the array such that: a+b+c = 0
+'''
+
 class Solution:
     def brute(self, nums):
         """
@@ -82,3 +86,29 @@ print(s.optimal(nums))
 
 
 
+
+
+'''
+OPTIMIZE SOLUTION :
+
+nums = [-1, 0, 1, 2, -1, -4]
+nums.sort()
+n = len(nums)
+result = set()
+for i in range(len(nums)):
+    left = i+1
+    right = len(nums)-1
+    while left < right:
+        sum = nums[i] + nums[left] + nums[right]
+        if sum == 0:
+            temp = [nums[i],nums[left],nums[right]]
+            result.add(tuple(sorted(temp)))
+            left += 1
+            right -= 1
+        elif sum < 0:
+            left += 1
+        else:
+            right -= 1
+newResult = [list(item) for item in result]
+print(newResult)
+'''

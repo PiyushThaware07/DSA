@@ -1,3 +1,10 @@
+'''
+PROBLEM STATEMENT :
+You are given an integer array coins representing coin denominations and an integer amount representing a target amount.
+Your task is to determine the minimum number of coins needed to make up the given amount.
+If it is impossible to make up the amount using the given coin denominations, return -1.
+'''
+
 class Solution:
     def brute(self,coins,amount):
         minCoinRequired = [amount + 1] * (amount + 1)

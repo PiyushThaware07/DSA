@@ -54,6 +54,20 @@ class Solution:
         MaximumSum = 4 & currentSum will be as it is till you get negative
         4 - 1 = 3
         4 - 1 + 2 = 5
+
+
+
+        
+        index       currentSum                  maximumSum
+        0           0 + -2 = -2 (reset = 0)          0
+        1           0 + 1  = 1                       1
+        2           1 + -3 = -2 (reset = 0)          1
+        3           0 + 4 = 4                        4
+        4           4 + -1 = 3                       4 (no change)
+        5           3 + 2 = 5                        5
+        6           5 + 1 = 6                        6
+        7           6 + -5 = 1                       6 (no change)
+        8           1 + 4 = 5                        6 (no change & it is answer)
         '''
         maximum_sum = arr[0]
         current_sum = 0
@@ -66,7 +80,7 @@ class Solution:
         print(maximum_sum)
 
 
-numbers = [-1]
+numbers = [-2,1,-3,4,-1,2,1,-5,4]
 s = Solution()
 s.brute(numbers)
 s.better(numbers)

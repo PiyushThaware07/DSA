@@ -1,5 +1,5 @@
 '''
-Majority Element
+Majority Element : Majority element must be appear more then 1/2 time of it length.
 
 Given an array nums of size n, return the majority element.
 Example 1:
@@ -53,3 +53,35 @@ s = Solution()
 s.brute(nums)
 s.better(nums)
 s.optimal(nums)
+
+'''
+Moore's Voting Algorithm Steps:
+Candidate Selection (Voting Phase):
+
+Initialize count = 0 and candidate = None.
+Traverse the array:
+If count == 0, set the current element as the candidate.
+If the current element is the same as the candidate, increment count.
+Otherwise, decrement count.
+Candidate Verification:
+
+Traverse the array again and count the occurrences of the candidate.
+If the count of candidate is greater than 
+⌊
+𝑛
+/
+2
+⌋
+⌊n/2⌋, it is the majority element.
+Otherwise, no majority element exists.
+
+
+count | current element | candidate element
+  1           2                   2
+  2           2                   2
+  1           2                   1
+  0           2                   1
+  1           1                   1
+  0           1                   2
+  1           2                   2
+'''

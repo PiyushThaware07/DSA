@@ -1,8 +1,22 @@
 '''
 Find the second largest element in an array
-1. Brute Force
-2. Better
-3. Optimized
+1. Better Solution
+    * Find the largest element:
+        Iterate through the array to find the largest element (largestElement).
+    * Find the second largest element:
+        Iterate through the array again and compare each element:
+    * If an element is greater than the current sLargestElement and less than largestElement, update sLargestElement.
+    * Print the second largest element.
+
+2. Optimal Solution
+    * Initialize largestElement with the first element of the array and sLargestElement with -1.
+    * Iterate through the array:
+        If the current element is greater than largestElement:
+            Update sLargestElement to the current largestElement.
+            Update largestElement to the current element.
+        Otherwise, if the current element is less than largestElement but greater than sLargestElement:
+            Update sLargestElement.
+    * Print the second largest element.
 
 Example 1 : [1,2,3,4,5] 
 --> In this example as there is no repetation of number so the second largest will be n-2
