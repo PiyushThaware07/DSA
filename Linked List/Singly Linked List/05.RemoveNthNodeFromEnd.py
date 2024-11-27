@@ -22,6 +22,42 @@ class Solution:
             i = i + 1
         l2.next = l2.next.next 
         myList.traversal()
+    
+    def optimal(self,myList,target):
+        '''
+        Add a Dummy Node -> Create a dummy node and link it to the head of the list.
+        Initialize Pointers -> Set two pointers, slow and fast, to point to the dummy node.
+        Move fast Pointer -> Advance the fast pointer n + 1 steps ahead.
+        If fast becomes None during this process, it means n exceeds the length of the list.
+        Traverse the List -> Move both fast and slow pointers one step at a time until fast reaches the end of the list.
+        At this point, the slow pointer will be just before the node to be removed.
+        Remove the Target Node -> Update the next pointer of the slow node to skip the target node.
+        Update the Head -> Reassign the head of the list to dummy.next in case the removed node was the original head.
+        Traverse the Updated List -> Display the updated linked list using a traversal method.
+        '''
+        # Add a dummy node to the myList before it head
+        node = CreateNode(-1)
+        dummy = node
+        dummy.next = myList.head
+        slow = dummy
+        fast = dummy
+        # Move `fast` n+1 steps ahead
+        for _ in range(target+1):
+            if fast is None:
+                print("n is greater then the no of list present in linkedlist!")
+                return
+            fast = fast.next
+        # Move 'fast' and 'slow' pointer together until the list of fast not finish first
+        while fast is not None:
+            fast = fast.next
+            slow = slow.next
+        # Remove the nth node
+        slow.next = slow.next.next
+        # Update head in case the head was removed
+        myList.head = dummy.next
+        myList.traversal()
+        
+        
 
         
 
@@ -43,4 +79,5 @@ ll1.addEnd(5)
 ll1.traversal()
 
 s = Solution()
-s.brute(ll1,1)
+# s.brute(ll1,2)
+s.optimal(ll1,2)

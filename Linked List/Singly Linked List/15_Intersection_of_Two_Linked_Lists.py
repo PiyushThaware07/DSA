@@ -62,7 +62,7 @@ ll2.addEnd(5)
 # ll2.traversal()
 
 # Make ll2 intersect ll1 at node with value 8 for demonstration
-ll1.head.next.next.next.next = ll2.head.next.next.next
+ll1.head.next.next.next = ll2.head.next.next
 
 
 s = Solution()

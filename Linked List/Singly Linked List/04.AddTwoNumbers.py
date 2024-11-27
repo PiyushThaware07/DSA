@@ -25,7 +25,7 @@ class Solution(object):
             dataOfL2 = l2.data if l2 is not None else 0
             sumOfdata = dataOfL1 + dataOfL2 + carry
             
-            # Create a new node with the digit dataue of the sum
+            # Create a new node with the digit data of the sum
             remainder = sumOfdata % 10
             new_node = CreateNode(remainder)  # Get the last digit
             carry = sumOfdata // 10  # Update carry
@@ -38,8 +38,9 @@ class Solution(object):
             
             if l2 is not None:
                 l2 = l2.next  # Move to the next node in l2
-        
-        print(dummy.next.data)  # Return the next of dummy node which points to the head of the new linked list
+        mergedList = LinkedList()
+        mergedList.head = dummy.next
+        mergedList.traversal()
 
             
 
@@ -70,19 +71,14 @@ class Solution(object):
 
 
 ll1 = LinkedList()
-ll1.addBegin(9)
-ll1.addBegin(9)
-ll1.addBegin(9)
-ll1.addBegin(9)
-ll1.addBegin(9)
-ll1.addBegin(9)
-ll1.addBegin(9)
+ll1.addBegin(2)
+ll1.addBegin(4)
+ll1.addBegin(3)
 
 ll2 = LinkedList()
-ll2.addBegin(9)
-ll2.addBegin(9)
-ll2.addBegin(9)
-ll2.addBegin(9)
+ll2.addBegin(5)
+ll2.addBegin(6)
+ll2.addBegin(4)
 
 s = Solution()
 s.addTwoNumbers(ll1,ll2)

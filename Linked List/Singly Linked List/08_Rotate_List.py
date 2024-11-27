@@ -3,7 +3,6 @@
 k = 2 
 5 -> 4 -> 3 -> 2 -> 1
 '''
-from requests import head
 from custom.linkedlist import LinkedList
 class Solution:
     def optimize(self,myList,k):

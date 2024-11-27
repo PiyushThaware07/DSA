@@ -1,7 +1,7 @@
 '''
 Delete Node in a Linked List
 
-There is a singly-linked list head and we want to delete a node node in it.
+There is a singly-linked list head and we want to delete a node in it.
 You are given the node to be deleted node. You will not be given access to the first node of head.
 
 Input: head = [4,5,1,9], node = 5
