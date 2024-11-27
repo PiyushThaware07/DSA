@@ -298,11 +298,44 @@ class LinkedList:
         print("Not Found")
         return
     
+    
+    def reverse2(self,myList,left=2,right=4):
+        head = myList.head
+        dummy = CreateNode(-1)
+        dummy.next = head  # X -> 1 -> 2 -> 3 -> 4 -> 5
+        
+        prevNode = dummy
+        currentNode = head
+        
+        # 1. Iterate till left-1
+        for _ in range(left-1):
+            prevNode = prevNode.next
+            currentNode = currentNode.next
+        
+        # 2. Reverse between left and right i.e right-left+1 => 4-2+1 => 3 i.e 2,3,4 --> 4,3,2
+        subListHead = currentNode
+        previous = None
+        for _ in range(right-left+1):
+            tempNode = currentNode.next
+            currentNode.next = previous
+            previous = currentNode
+            currentNode = tempNode
+        
+        # 3. Rejoin the parts
+        prevNode.next = previous
+        subListHead.next = currentNode
+        
+        # 4. Update the heads of a linked list
+        myList.head = dummy.next
+        myList.traversal()
+        
+        
+    
         
 ll1 = LinkedList()
-ll1.insertEnd(4)
 ll1.insertEnd(1)
-ll1.insertEnd(8)
+ll1.insertEnd(2)
+ll1.insertEnd(3)
 ll1.insertEnd(4)
 ll1.insertEnd(5)
 
@@ -315,5 +348,4 @@ ll2.insertEnd(8)
 ll2.insertEnd(4)
 ll2.insertEnd(5)
 
-ll1.head.next.next.next = ll2.head.next.next
-ll1.IntersectionOfTwoLinkedList(ll1,ll2)
+ll1.reverse2(ll1)
