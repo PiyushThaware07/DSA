@@ -101,6 +101,16 @@ class BST:
         
         return self
 
+    def countNode(self):
+        if self is None:
+            return 0
+        leftCount = self.lchild.countNode() if self.lchild is not None else 0
+        rightCount = self.rchild.countNode() if self.rchild is not None else 0
+        print("Left Count : ",leftCount,"Right Count : ",rightCount)
+        return 1 + leftCount + rightCount  # 1 for root
+            
+          
+
 # Example Usage
 root = BST(None)
 nums = [10, 5, 20, 15, 18, 30, 25, 22, 24]

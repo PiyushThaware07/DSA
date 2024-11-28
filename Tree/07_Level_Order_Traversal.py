@@ -49,3 +49,19 @@ nums = [10,5,20,15,25,30,50,35,40]
 for num in nums:
     root.insert(num)
 root.level_order_traversal()
+
+
+'''
+    def levelOrder(self):
+        root = self
+        queue = [root]
+        result = []
+        while queue:
+            current = queue.pop(0)
+            result.append(current.key)
+            if current.lchild is not None:
+                queue.append(current.lchild)
+            if current.rchild is not None:
+                queue.append(current.rchild)
+        print(result)
+'''

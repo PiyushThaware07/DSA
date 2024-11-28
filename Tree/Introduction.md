@@ -144,3 +144,67 @@ def search(self,target):
         print(self.key,end=" ")
         
 ```
+## 5. Maximum & Minimum Node Value
+```
+ def minValueNode(self):
+        if self.lchild is None:
+            print(self.key)
+            return
+        else:
+            current = self
+            while current.lchild is not None:
+                current = current.lchild
+            print(current.key)
+            return
+    
+    def maxValueNode(self):
+        if self.rchild is None:
+            print(self.key)
+            return
+        else:
+            current = self
+            while current.rchild is not None:
+                current = current.rchild
+            print(current.key)
+            return
+```
+## 6. Level Ordered Traversal : 
+```
+    def levelOrder(self):
+        root = self
+        queue = [root]
+        result = []
+        while queue:
+            levelSize = len(queue)
+            levelNodes = []
+            for _ in range(levelSize):
+                current = queue.pop(0)
+                levelNodes.append(current.key)
+                if current.lchild is not None:
+                    queue.append(current.lchild)
+                if current.rchild is not None:
+                    queue.append(current.rchild)
+            result.append(levelNodes)
+        print(result)
+        return
+```
+![alt text](https://static.takeuforward.org/content/level-order-image2-KUQPEVEj)
+
+## 7. Height of BST : 
+The height of a Binary Search Tree (BST) is defined as the length of the longest path from the root node to any leaf node in the tree.
+```
+    def HeightOfBST(self):
+        root = self
+        queue = [root]
+        height = 0
+        while queue:
+            levelSize = len(queue)
+            for _ in range(levelSize):
+                current = queue.pop(0)
+                if current.lchild is not None:
+                    queue.append(current.lchild)
+                if current.rchild is not None:
+                    queue.append(current.rchild)
+            height = height + 1
+        print(height)
+```

@@ -1,6 +1,3 @@
-from turtle import left
-
-
 class BST:
     def __init__(self,val):
         self.val = val
@@ -25,11 +22,11 @@ class BST:
 
     def levelOrder(self):     # Method - 01 : using level order traversal
         queue = [self]
-        level = 0
+        height = 0  # Root at level-1 so
         while len(queue) != 0:
-            level = len(queue)
+            levelSize = len(queue)
 
-            for _ in range(level):
+            for _ in range(levelSize):
                 root = queue.pop(0)
 
                 if root.lchild is not None:
@@ -37,8 +34,8 @@ class BST:
                 
                 if root.rchild is not None:
                     queue.append(root.rchild)
-            level = level + 1
-        return level
+            height += 1
+        return height
         
     
     def maximum_depth(self):   # Method - 02 : using recursion
@@ -59,4 +56,4 @@ nums = [10,5,7,15,20,17,25]
 for num in nums:
     root.insert_node(num)
 print(root.levelOrder())
-# print(root.maximum_depth())
+print(root.maximum_depth())

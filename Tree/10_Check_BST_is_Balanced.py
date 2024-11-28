@@ -1,6 +1,3 @@
-from turtle import left
-
-
 class BST:
     def __init__(self,val):
         self.val = val
@@ -32,12 +29,13 @@ class BST:
         rh = 0
         if self.lchild is not None:
             lh = self.lchild.find_depth()
+            if lh == -1:
+                return -1
 
         if self.rchild is not None:
             rh = self.rchild.find_depth()
-
-        if (lh == -1 or rh == -1):
-            return -1
+            if rh == -1:
+                return -1
         
         if(abs(lh-rh)>1):   # abs(-10) ==> 10
             return -1
