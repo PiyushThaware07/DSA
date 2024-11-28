@@ -1,3 +1,10 @@
+'''
+OPERATION : INSERTION
+1. Check BST is empty : if yes then insert new node.
+2. Root Key < given value : If yes then goto right subtree find the correct position of newnode insertion
+                            else no then goto left subtree find the correct position of newnode in left hand side of tree.
+'''
+
 class BST:
     def __init__(self,key):
         self.key = key

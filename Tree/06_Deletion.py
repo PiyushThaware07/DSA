@@ -1,3 +1,23 @@
+'''
+OPERATION : DELETION
+CASE 01 -> Delete node having -> 0 Children.
+           - Simply remove the node, as it is a leaf node and has no dependencies.
+
+CASE 02 -> Delete node having -> 1 Child.
+           - Replace the node with its child (left or right) and adjust the tree structure.
+
+CASE 03 -> Delete node having -> 2 Children.
+            a. Replace node with the max value in the left subtree.
+               - Find the maximum value node in the left subtree (in-order predecessor).
+               - Replace the value of the node to be deleted with this max value.
+               - Delete the max value node from the left subtree (it will fall under Case 01 or Case 02).
+
+            b. Alternatively, replace node with the min value in the right subtree.
+               - Find the minimum value node in the right subtree (in-order successor).
+               - Replace the value of the node to be deleted with this min value.
+               - Delete the min value node from the right subtree (it will fall under Case 01 or Case 02).
+'''
+
 class BST:
     def __init__(self, key):
         self.key = key
