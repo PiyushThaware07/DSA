@@ -1,3 +1,7 @@
+'''
+PROBLEM STATEMENT : Number of nodes in the largest path between two leaf nodes.
+'''
+
 class BST:
     def __init__(self, val):
         self.val = val
@@ -41,7 +45,7 @@ class BST:
 
 # Example usage
 root = BST(None)
-nums = [5,10,7,15,12,20,25,22,28,30]
+nums = [1,2,3,4,5]
 for num in nums:
     root.insert_node(num)
 

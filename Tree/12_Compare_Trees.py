@@ -29,9 +29,13 @@ class BST:
         if root1 is None or root2 is None:
             return False
         # Check if the current nodes' values are the same and recursively check the left and right subtrees
-        return (root1.val == root2.val and
-                root1.lchild.isSame(root2.lchild) if root1.lchild and root2.lchild else root1.lchild is None and root2.lchild is None and
-                root1.rchild.isSame(root2.rchild) if root1.rchild and root2.rchild else root1.rchild is None and root2.rchild is None)
+        return (
+            root1.val == root2.val
+            and
+            (root1.lchild.isSame(root2.lchild) if root1.lchild and root2.lchild else root1.lchild == root2.lchild )
+            and 
+            (root1.rchild.isSame(root2.rchild) if root1.rchild and root2.rchild else root1.rchild == root2.rchild )
+        )
 
 # Example usage
 root1 = BST(1)

@@ -1,6 +1,3 @@
-from math import e
-
-
 class BST:
     def __init__(self, val):
         self.val = val
@@ -49,7 +46,7 @@ class BST:
 
 root = BST(1)
 root.lchild = BST(2)
-root.rchild = BST(3)
+root.rchild = BST(2)
 root.lchild.lchild = BST(3)
 root.lchild.rchild = BST(4)
 root.rchild.lchild = BST(4)
