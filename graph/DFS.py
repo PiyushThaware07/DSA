@@ -1,8 +1,4 @@
-
-# * Insertion using Adjacency List 
-from calendar import c
-from operator import neg
-
+#  Insertion using Adjacency List 
 
 class Graph:
     def __init__(self):
