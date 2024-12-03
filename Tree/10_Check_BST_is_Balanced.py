@@ -57,3 +57,36 @@ nums = [1, 2, 3, 4, 5, 6,7]
 for num in nums:
     root.insert_node(num)
 root.isBalanced()
+
+
+
+'''
+    
+    def balancedBST(self):
+        if self is None:
+            print("BST is empty!")
+            return
+        
+        def findDepth(node):
+            if node is None:
+                return 0
+            
+            lh = 0
+            rh = 0
+            
+            lh = findDepth(node.lchild)
+            rh = findDepth(node.rchild)
+            
+            if lh == -1 or rh == -1 or abs(lh-rh) > 1:
+                return -1
+            
+            return 1 + max(lh,rh)
+            
+        
+        def isBalanced(node):
+            if findDepth(node) == -1:
+                print("Unbalanced")
+            else:
+                print("Balanced")
+        isBalanced(self)
+'''

@@ -1,50 +1,82 @@
 class Graph:
     def __init__(self):
-        self.vertices = {}
+        self.graph = {}
+    
+    def addVertice(self,newVertice):
+        if newVertice in self.graph:
+            print(f"{newVertice} vertice already present!")
+            return
+        else:
+            self.graph[newVertice] = []
+            # print(f"{newVertice} vertice added successfully!")
+            return
+    
+    def addEdge(self,vertice1,vertice2):
+        if vertice1 not in self.graph:
+            print(f"{vertice1} vertice not present in vertices")
+            return
+        elif vertice2 not in self.graph:
+            print(f"{vertice2} vertice not present in vertices")
+            return
+        else:
+            self.graph[vertice1].append(vertice2)
+            self.graph[vertice2].append(vertice1)
+            # print(f"edge added between vertices {vertice1} and {vertice2}")
+            return
+        
+    def removeVertice(self,targetVertice):
+        if targetVertice not in self.graph:
+            print(f"{targetVertice} vertice not present in vertices")
+            return
+        else:
+            self.graph.pop(targetVertice)
+            for key in self.graph:
+                lists = self.graph[key]
+                if targetVertice in lists:
+                    lists.remove(targetVertice)
+    
+    def removeEdge(self,vertice1,vertice2):
+        if vertice1 not in self.graph:
+            print(f"{vertice1} vertice not present in vertices!")
+            return
+        elif vertice2 not in self.graph:
+            print(f"{vertice2} vertice not present in vertices!")
+            return
+        else:
+            self.graph[vertice1].remove(vertice2)
+            self.graph[vertice2].remove(vertice1)
+            # print(f"edge between vertices {vertice1} and {vertice2} has been removed!")
+            return
+    
+    def DFS(self,initialVertice,visited):
+        if initialVertice not in self.graph:
+            print(f"{initialVertice} vertice not in graph!")
+            return
+        if initialVertice not in visited:
+            visited.add(initialVertice)
+            print(initialVertice,end=" ")
+            for neighbor in self.graph[initialVertice]:
+                self.DFS(neighbor,visited)
+                
+            
         
     
-    def addVertices(self,newVertice):
-        if newVertice in self.vertices:
-            print(f"{newVertice} node already exists in graph!")
-            return
-        else:
-            self.vertices[newVertice] = []
-            print(f"{newVertice} hash been added successfully!")
-            return
     
-    def addEdges(self,vertice1,vertice2):
-        if vertice1 not in self.vertices:
-            print(f"{vertice1} node not found!")
-            return
-        elif vertice2 not in self.vertices:
-            print(f"{vertice2} node not found!")
-            return
-        else:
-            self.vertices[vertice1].append(vertice2)
-            self.vertices[vertice2].append(vertice1)
-            print(f"link between {vertice1} and {vertice2} has been added!")
-            return
-    
-    def depthFirstSearch(self,root,visited=set()):
-        if root not in self.vertices:
-            print(f"{root} not in vertices!")
-            return
-        if root not in visited:
-            visited.add(root)
-            print(root,end="-> ")
-            for neighbor in self.vertices[root]:
-                self.depthFirstSearch(neighbor,visited)
-            print()
-            
-    
-    
-root = Graph()
-root.addVertices("A")
-root.addVertices("B")
-root.addVertices("C")
-root.addVertices("D")
-root.addEdges("A","B")
-root.addEdges("A","D")
-root.addEdges("B","C")
-root.depthFirstSearch("A")
-print(root.vertices)
+g = Graph()
+g.addVertice("A")
+g.addVertice("B")
+g.addVertice("C")
+g.addVertice("D")
+g.addVertice("E")
+g.addVertice("F")
+
+g.addEdge("A","B")
+g.addEdge("A","C")
+g.addEdge("A","D")
+g.addEdge("B","D")
+g.addEdge("C","D")
+g.addEdge("B","E")
+g.addEdge("D","E")
+g.addEdge("E","F")
+
+g.DFS("A",set())
