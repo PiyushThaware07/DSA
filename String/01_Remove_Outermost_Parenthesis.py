@@ -19,9 +19,7 @@ class Solution:
                     result.append(char)
             else:
                 stack.pop()
-                if len(stack) == 0:         # Pop only the element dont add to stack
-                    pass 
-                else:                       # Pop + add to result
+                if len(stack) != 0:         # Pop only the element dont add to stack                     # Pop + add to result
                     result.append(char)
         ans = "".join(result)
         print(ans)

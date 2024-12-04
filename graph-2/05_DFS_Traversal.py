@@ -130,3 +130,47 @@ print(g.graph)
 g.DFS_Iterative(1)
 g.DFS_Recursive(1,set())
 g.isCycle()
+
+
+
+'''
+from common.graph import Graph
+
+class Solution:
+    def dfs(self, graph):
+        def traversal(node, visited):
+            if node not in visited:
+                visited.add(node)
+                print(f"Visiting: {node}")
+                for neighbor in graph[node]:
+                    traversal(neighbor, visited)
+                print(f"Backtracking from: {node}")  # Debug statement for backtracking
+
+        traversal("A", set())  # Start traversal from node "A"
+
+# Graph creation
+g = Graph()
+g.addVertice("A")
+g.addVertice("B")
+g.addVertice("C")
+g.addVertice("D")
+g.addVertice("E")
+g.addEdge("A", "B")
+g.addEdge("A", "C")
+g.addEdge("A", "D")
+g.addEdge("B", "A")
+g.addEdge("B", "E")
+g.addEdge("B", "D")
+g.addEdge("C", "A")
+g.addEdge("C", "D")
+g.addEdge("D", "A")
+g.addEdge("D", "B")
+g.addEdge("D", "C")
+g.addEdge("D", "E")
+g.addEdge("E", "B")
+g.addEdge("E", "D")
+
+# Solution
+sol = Solution()
+sol.dfs(g.graph)
+'''
