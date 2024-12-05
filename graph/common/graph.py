@@ -10,14 +10,17 @@ class Graph:
             self.graph[newVertice] = []
             return f"{newVertice} vertice added to graph!"
     
-    def addEdge(self,vertice1,vertice2):
+    def addEdge(self,vertice1,vertice2,type="undirected"):
         if vertice1 not in self.graph:
             print(f"{vertice1} vertice not present in graph!")
             return
         if vertice2 not in self.graph:
             print(f"{vertice2} vertice not present in graph!")
             return
-        self.graph[vertice1].append(vertice2)
-        self.graph[vertice2].append(vertice1)
+        if type == "undirected":
+            self.graph[vertice1].append(vertice2)
+            self.graph[vertice2].append(vertice1)
+        else:
+            self.graph[vertice1].append(vertice2)
         return f"edge added between vertices {vertice1} & {vertice2}"
             
