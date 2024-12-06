@@ -14,6 +14,7 @@ from common.graph import Graph
 
 class Solution:
     def dfs(self,node,visited,pathVisisted,graph):
+        print('dfs for : ',node)
         visited[node] = 1
         pathVisisted[node] = 1
         for neighbor in graph[node]:
