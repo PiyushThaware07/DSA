@@ -28,7 +28,7 @@ class Solution:
                     break
         print(longest)
 
-    
+
 
 
 numbers = [1,2,3,1,1,1,1,2,3]
