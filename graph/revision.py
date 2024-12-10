@@ -207,3 +207,57 @@ matrix = {
 }
 sol.topological_sort_dfs(matrix)
 sol.topological_sort_bfs(matrix)
+
+
+'''
+class Solution:
+    def topological_sort_dfs(self,node,visited,graph,stack):
+        visited[node] = 1
+        for neighbor,weight in graph[node]:
+            if visited[neighbor] == 0:
+                self.topological_sort_dfs(neighbor,visited,graph,stack)
+        stack.append(node)
+    
+    def shorted_distance(self,graph,source):
+        # step-1 : Implement topological sorting either using dfs or bfs
+        visited = {node:0 for node in graph}
+        stack = []
+        for node in graph:
+            if visited[node] == 0:
+                self.topological_sort_dfs(node,visited,graph,stack)
+        
+        # Step 2: Initialize distances
+        distance = {node: float('inf') for node in graph}
+        distance[source] = 0
+        
+        # Step 3: Process nodes in topological order
+        while stack:
+            current = stack.pop()
+            if distance[current] != float('inf'):
+                if current in graph:
+                    for neighbor, weight in graph[current]:
+                        if distance[current] + weight < distance[neighbor]:
+                            distance[neighbor] = distance[current] + weight
+        result = []
+        for node in sorted(graph):
+            dist = distance[node]
+            result.append(dist)
+        print(result)
+                
+        
+
+
+
+graph = {
+    6 : [(4,2),(5,3)],  # (node,weight)
+    5 : [{4,1}],
+    4 : [(0,3),(2,1)],
+    3 : [],
+    2 : [(3,3)],
+    1 : [(3,1)],
+    0 : [(1,2)]
+}
+
+sol = Solution()
+sol.shorted_distance(graph,6)
+'''
