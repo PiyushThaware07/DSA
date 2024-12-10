@@ -1,3 +1,4 @@
+import queue
 from common.graph import Graph
 
 class Solution:
@@ -114,9 +115,41 @@ class Solution:
         print('cycle not found!')
         return
                    
+    def topological_sort_dfs(self,matrix):
+        def dfs(node,visited,result):
+            visited[node] = 1
+            for neighbor in matrix[node]:
+                if visited[neighbor] == 0:
+                    dfs(neighbor,visited,result)
+            result.append(node)
+            
+        visited = {node:0 for node in matrix}
+        result = []
+        for node in matrix:
+            if visited[node] == 0:
+                dfs(node,visited,result)
+        print(result[::-1])
+            
+    def topological_sort_bfs(self,matrix):
+        indegree = {node:0 for node in matrix}
+        for node in matrix:
+            for neighbor in matrix[node]:
+                indegree[neighbor] += 1
+        queue = []
+        for node in matrix:
+            if indegree[node] == 0:
+                queue.append(node)
+        result = []
+        while queue:
+            current = queue.pop(0)
+            result.append(current)
+            for neighbor in matrix[current]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+        print(result)
+            
         
-            
-            
         
         
         
@@ -162,3 +195,15 @@ sol.flood_fill(1,1,2,image)
 
 sol.delect_cycle_undireted_bfs(1,g.graph)
 sol.detect_cycle_undirected_dfs(g.graph)
+
+
+matrix = {
+    5 : [0,2],
+    2 : [3],
+    0 : [],
+    1 : [],
+    3 : [1],
+    4 : [0,1],
+}
+sol.topological_sort_dfs(matrix)
+sol.topological_sort_bfs(matrix)
