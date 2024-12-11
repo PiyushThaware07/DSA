@@ -16,6 +16,7 @@ class Solution:
             for dest in neighbors:
                 adjList[dest].append(src)
         
+        
         # Step 2: Calculate in-degrees
         indegree = {node:0 for node in adjList}
         for node in adjList:

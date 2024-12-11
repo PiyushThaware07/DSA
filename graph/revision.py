@@ -1,3 +1,4 @@
+import dis
 import queue
 from common.graph import Graph
 
@@ -114,42 +115,185 @@ class Solution:
                    return
         print('cycle not found!')
         return
-                   
-    def topological_sort_dfs(self,matrix):
+    
+    def topological_sort_using_dfs(self,graph):
         def dfs(node,visited,result):
             visited[node] = 1
-            for neighbor in matrix[node]:
+            for neighbor in graph[node]:
                 if visited[neighbor] == 0:
                     dfs(neighbor,visited,result)
             result.append(node)
             
-        visited = {node:0 for node in matrix}
+        visited = {node:0 for node in graph}
         result = []
-        for node in matrix:
+        for node in graph:
             if visited[node] == 0:
                 dfs(node,visited,result)
-        print(result[::-1])
-            
-    def topological_sort_bfs(self,matrix):
-        indegree = {node:0 for node in matrix}
-        for node in matrix:
-            for neighbor in matrix[node]:
+        result = result[::-1]
+        print(result)
+        
+    def topological_sort_using_bfs(self,graph):
+        indegree = {node:0 for node in graph}
+        for node in graph:
+            for neighbor in graph[node]:
                 indegree[neighbor] += 1
+        
         queue = []
-        for node in matrix:
+        for node in indegree:
             if indegree[node] == 0:
                 queue.append(node)
+        
         result = []
         while queue:
             current = queue.pop(0)
             result.append(current)
-            for neighbor in matrix[current]:
+            for neighbor in graph[current]:
                 indegree[neighbor] -= 1
                 if indegree[neighbor] == 0:
                     queue.append(neighbor)
         print(result)
-            
         
+    def course_schedule(self,numCourses,prerequisites):
+        adjList = {node:[] for node in range(numCourses)}
+        for dest,src in prerequisites:
+            adjList[src].append(dest)
+        
+        indegree = {node:0 for node in adjList}
+        for node in adjList:
+            for neighbor in adjList[node]:
+                indegree[neighbor] += 1
+        
+        queue = []
+        for node in indegree:
+            if indegree[node] == 0:
+                queue.append(node)
+        
+        result = []
+        while queue:
+            current = queue.pop(0)
+            result.append(current)
+            for neighbor in adjList[current]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+        if numCourses == len(result):
+            print("No Cycle")
+        else:
+            print("Cycle Found!")
+        
+    
+    def course_schedule_2(self,numCourses,prerequisites):
+        adjList = {node:[] for node in range(numCourses)}
+        for dest,src in prerequisites:
+            adjList[src].append(dest)
+        
+        indegree = {node:0 for node in adjList}
+        for node in adjList:
+            for neighbor in adjList[node]:
+                indegree[neighbor] += 1
+        
+        queue = []
+        for node in indegree:
+            if indegree[node] == 0:
+                queue.append(node)
+        
+        result = []
+        while queue:
+            current = queue.pop(0)
+            result.append(current)
+            for neighbor in adjList[current]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+                    
+        if len(result) == numCourses:
+            print(result)
+        else:
+            print([])
+            
+    def create_adj_from_graph(self,graph):
+        adjList = {node:[] for node in range(len(graph))}
+        for index,values in enumerate(graph):
+            for value in values:
+                adjList[index].append(value)
+        print(adjList)
+    
+    def find_even_state_safe(self,graph):
+        adjList = {node:[] for node in range(len(graph))}
+        for src,neighbors in enumerate(graph):
+            for dest in neighbors:
+                adjList[dest].append(src)
+                
+        outdegree = {node:0 for node in adjList}
+        for node in adjList:
+            for neighbor in adjList[node]:
+                outdegree[neighbor] += 1
+        
+        queue = []
+        for node in outdegree:
+            if outdegree[node] == 0:
+                queue.append(node)
+        
+        result = []
+        while queue:
+            current = queue.pop(0)
+            result.append(current)
+            for neighbor in adjList[current]:
+                outdegree[neighbor] -= 1
+                if outdegree[neighbor] == 0:
+                    queue.append(neighbor)
+        result = sorted(result)
+        print(result)
+        
+    
+    def find_shortest_distance_directed_acyclic_graph(self,graph,source):
+        indegree = {node:0 for node in graph}
+        for node in graph:
+            for neighbor,weight in graph[node]:
+                indegree[neighbor] += 1
+        
+        queue = []
+        for node in indegree:
+            if indegree[node] == 0:
+                queue.append(node)
+        
+        stack = []
+        while queue:
+            current = queue.pop(0)
+            stack.append(current)
+            for neighbor,weight in graph[current]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+        
+        distance = {node:float("inf") for node in graph}
+        distance[source] = 0
+        while stack:
+            current = stack.pop(0)
+            if distance[current] != float("inf"):
+                for neighbor,weight in graph[current]:
+                    if distance[neighbor] > distance[current] + weight:
+                        distance[neighbor] = distance[current]+weight
+        print(distance)
+        
+    
+    def find_shortest_distance_undirected_acyclic_graph(self,graph,source,totalNodes,totalEdges):
+        adjList = {node:[] for node in range(totalNodes)}
+        for u,v in graph:
+            adjList[u].append(v)
+            adjList[v].append(u)
+        
+        distance = {node:float("inf") for node in range(totalNodes)}
+        distance[source] = 0
+        
+        queue = [(source,0)] #(node,dist)
+        while queue:
+            node,dist = queue.pop(0)
+            for neighbor in adjList[node]:
+                if distance[neighbor] == float("inf"):
+                    distance[neighbor] = distance[node] + 1
+                    queue.append((neighbor,distance[node]+1))
+        print(distance)
         
         
         
@@ -205,51 +349,15 @@ matrix = {
     3 : [1],
     4 : [0,1],
 }
-sol.topological_sort_dfs(matrix)
-sol.topological_sort_bfs(matrix)
-
-
-'''
-class Solution:
-    def topological_sort_dfs(self,node,visited,graph,stack):
-        visited[node] = 1
-        for neighbor,weight in graph[node]:
-            if visited[neighbor] == 0:
-                self.topological_sort_dfs(neighbor,visited,graph,stack)
-        stack.append(node)
-    
-    def shorted_distance(self,graph,source):
-        # step-1 : Implement topological sorting either using dfs or bfs
-        visited = {node:0 for node in graph}
-        stack = []
-        for node in graph:
-            if visited[node] == 0:
-                self.topological_sort_dfs(node,visited,graph,stack)
-        
-        # Step 2: Initialize distances
-        distance = {node: float('inf') for node in graph}
-        distance[source] = 0
-        
-        # Step 3: Process nodes in topological order
-        while stack:
-            current = stack.pop()
-            if distance[current] != float('inf'):
-                if current in graph:
-                    for neighbor, weight in graph[current]:
-                        if distance[current] + weight < distance[neighbor]:
-                            distance[neighbor] = distance[current] + weight
-        result = []
-        for node in sorted(graph):
-            dist = distance[node]
-            result.append(dist)
-        print(result)
-                
-        
-
-
+# sol.topological_sort_using_dfs(matrix)
+# sol.topological_sort_using_bfs(matrix)
+# sol.course_schedule(2,[[0,1],[1,0]])
+# sol.course_schedule_2(4,[[1,0],[2,0],[3,1],[3,2]])
+# sol.create_adj_from_graph([[1,2],[2,3],[5],[0],[5],[],[]])
+# sol.find_even_state_safe([[1,2],[2,3],[5],[0],[5],[],[]])
 
 graph = {
-    6 : [(4,2),(5,3)],  # (node,weight)
+    6 : [(4,2),(5,3)],
     5 : [{4,1}],
     4 : [(0,3),(2,1)],
     3 : [],
@@ -257,7 +365,5 @@ graph = {
     1 : [(3,1)],
     0 : [(1,2)]
 }
-
-sol = Solution()
-sol.shorted_distance(graph,6)
-'''
+sol.find_shortest_distance_directed_acyclic_graph(graph,6)
+sol.find_shortest_distance_undirected_acyclic_graph([[0,1],[0,3],[3,4],[4,5],[5,6],[1,2],[2,6],[6,7],[7,8],[6,8]],0,9,10)
