@@ -7,6 +7,8 @@ class Solution:
             for edge in nodeEdges:
                 targetNode, weight = edge
                 adjList[nodeIndex].append((targetNode, weight))
+        print(adjList)
+
         
         # Step 2: Create a distance map
         distance = {node: float("inf") for node in adjList}

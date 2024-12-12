@@ -43,9 +43,10 @@ class Solution:
             current = stack.pop()
             if distance[current] != float("inf"):
                 for neighbor, weight in graph[current]:
-                    if distance[neighbor] > distance[current] + weight:
-                        distance[neighbor] = distance[current] + weight
-        
+                    newDistance = distance[current] + weight
+                    if distance[neighbor] > newDistance:
+                        distance[neighbor] = newDistance
+
         # Step 4 : Prepare response
         result = []
         for node in sorted(graph):

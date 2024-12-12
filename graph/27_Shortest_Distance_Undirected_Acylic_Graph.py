@@ -1,10 +1,12 @@
 '''
-Problem Statement: Shortest Distance In Undirected Acyclic Grapph With Unit Weights (i.e 1 for all paths).
+Problem Statement: Shortest Distance In Undirected Acyclic Graph With Unit Weights (i.e 1 for all paths).
 
 You are given an undirected graph with n nodes and m edges. The graph is represented as a list of edges, 
 where each edge is a pair of integers [u, v], indicating an edge between node u and node v. 
 Your task is to calculate the shortest distance from a given source node to all other nodes in the graph. 
 If a node is not reachable from the source node, its distance should be -1.
+
+# Note --> You can not implement topological sort (dfs) to generate topo.
 '''
 
 class Solution:
@@ -14,6 +16,7 @@ class Solution:
         for u, v in edges:
             adjList[u].append(v)
             adjList[v].append(u)
+        print(adjList)
         
         
         # Step 2: Initialize distance array with infinity and set distance of source to 0
